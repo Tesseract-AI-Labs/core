@@ -2,3 +2,4 @@
 /output*/
 target/
 .DS_store
+wallet.json
