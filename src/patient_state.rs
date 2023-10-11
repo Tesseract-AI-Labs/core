@@ -1,14 +1,14 @@
 multiversx_sc::imports!();
 multiversx_sc::derive_imports!();
 
-#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode)]
+#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, TypeAbi)]
 pub struct PatientInfo<M: ManagedTypeApi> {
     pub id: ManagedByteArray<M, 32>,
     pub name: ManagedBuffer<M>,
     pub dob: ManagedBuffer<M>,
     pub address: ManagedAddress<M>,
     pub sex: ManagedBuffer<M>,
-    // pub tickets: ManagedByteArray<M, 32>
+    pub tickets: ManagedVec<M, Ticket<M>>
 }
 
 impl<M> PatientInfo<M>
@@ -18,10 +18,11 @@ where
         
 }
 
-#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode)]
+#[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, TypeAbi)]
 pub struct Ticket<M: ManagedTypeApi> {
     pub id: ManagedByteArray<M, 32>,
     pub data: ManagedBuffer<M>,
     pub result: ManagedBuffer<M>,
     pub validation: ManagedBuffer<M>
 }
+

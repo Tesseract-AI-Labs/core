@@ -5,9 +5,9 @@
 ////////////////////////////////////////////////////
 
 // Init:                                 1
-// Endpoints:                            3
+// Endpoints:                            9
 // Async Callback (empty):               1
-// Total number of exported functions:   5
+// Total number of exported functions:  11
 
 #![no_std]
 #![feature(lang_items)]
@@ -19,8 +19,14 @@ multiversx_sc_wasm_adapter::endpoints! {
     contract
     (
         create_patient
-        create_entry
+        delete_patient
+        update_patient
+        create_ticket
+        add_model
+        update_model
+        authorize
         getPendingAnalysis
+        getPatientInfo
     )
 }
 
