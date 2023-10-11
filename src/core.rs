@@ -51,15 +51,16 @@ pub trait TesseractContract {
 
         let id = self.hasher();
 
-        // let newPatient = PatientInfo{
-        //     id: id.clone(),
-        //     name,
-        //     dob,
-        //     address,
-        //     sex
-        // };
+        let newPatient = PatientInfo{
+            id: id.clone(),
+            name,
+            dob,
+            address,
+            sex,
+            tickets: ManagedVec::new()
+        };
 
-        // self.patient_info(id).set(&newPatient);
+        self.patient_info(id).set(&newPatient);
     } 
 
     #[endpoint]
