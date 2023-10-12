@@ -20,12 +20,12 @@ multiversx_sc_wasm_adapter::endpoints! {
     (
         create_patient
         delete_patient
-        update_patient
         create_ticket
         add_model
         update_model
         authorize
-        getPendingAnalysis
+        is_authorized
+        is_admin
         getPatientInfo
     )
 }
