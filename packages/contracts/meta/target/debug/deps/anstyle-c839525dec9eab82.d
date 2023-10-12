@@ -1,0 +1,12 @@
+/Users/akan/dev/hackathon/tesseract-ai/core/meta/target/debug/deps/anstyle-c839525dec9eab82.rmeta: /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/lib.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/macros.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/color.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/effect.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/reset.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/style.rs
+
+/Users/akan/dev/hackathon/tesseract-ai/core/meta/target/debug/deps/libanstyle-c839525dec9eab82.rlib: /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/lib.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/macros.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/color.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/effect.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/reset.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/style.rs
+
+/Users/akan/dev/hackathon/tesseract-ai/core/meta/target/debug/deps/anstyle-c839525dec9eab82.d: /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/lib.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/macros.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/color.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/effect.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/reset.rs /Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/style.rs
+
+/Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/lib.rs:
+/Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/macros.rs:
+/Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/color.rs:
+/Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/effect.rs:
+/Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/reset.rs:
+/Users/akan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/anstyle-1.0.1/src/style.rs:

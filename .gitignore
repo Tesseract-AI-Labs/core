@@ -1,5 +1,7 @@
-/node_modules/
-/output*/
-target/
-.DS_store
-wallet.json
+
+# Contracts
+packages/contracts/node_modules/
+packages/contracts/output*/
+packages/contractstarget/
+packages/contracts.DS_store
+packages/contracts/wallet.json
