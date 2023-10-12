@@ -4,7 +4,8 @@
     "workspaces": [
         "packages/dapp",
         "packages/contracts",
-        "packages/api-gateway"
+        "packages/api-gateway",
+        "packages/neural-net"
     ],
     "scripts": {
         "build:all": "yarn workspaces foreach run build"
