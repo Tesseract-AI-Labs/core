@@ -21,8 +21,7 @@ where
 #[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, TypeAbi, ManagedVecItem)]
 pub struct Ticket<M: ManagedTypeApi> {
     pub id: ManagedByteArray<M, 32>,
-    pub data: ManagedBuffer<M>,
-    pub upload_timestamp: u64,
+    pub timestamp: u64,
     pub analysis_result: ManagedBuffer<M>,
     pub validation: ManagedBuffer<M>
 }

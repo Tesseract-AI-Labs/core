@@ -7,7 +7,10 @@ multiversx_sc::derive_imports!();
 mod patient_state;
 mod constants;
 
-use patient_state::PatientInfo;
+use patient_state::{
+    PatientInfo,
+    Ticket
+};
 use constants::*;
 
 #[derive(TopEncode, TopDecode, NestedEncode, NestedDecode, TypeAbi, PartialEq)]
@@ -92,13 +95,30 @@ pub trait TesseractContract {
         self.patient_info(id).clear();
     }
     
+    /// @title Ticket Creation Endpoint
+    /// @notice This method is used to create a new ticket with the specified parameters.
+    /// @param id The unique identifier for the ticket.
+    /// @param hash_id A hash identifier (not used in the function, but included in the signature).
+    /// @param analysis_result The buffer containing the result of some analysis.
+    /// @dev The function retrieves the current block timestamp and uses it along with the other parameters to create a new Ticket instance. 
+    /// The new Ticket is then saved to the contract's state using the `ticker` method.
     #[endpoint]
     fn create_ticket(
         &self,
-        patient_id: i64,
-        hash_id: i64
+        id: ManagedByteArray<32>,
+        hash_id: i64,
+        analysis_result: ManagedBuffer
     ) {
-        
+        let timestamp = self.blockchain().get_block_timestamp();
+
+        let newTicket = Ticket{
+            id: id.clone(),
+            timestamp,
+            analysis_result,
+            validation: ManagedBuffer::new()
+        };
+
+        self.ticker(id).set(&newTicket);
     }
 
     #[endpoint]
@@ -196,6 +216,16 @@ pub trait TesseractContract {
         id: ManagedByteArray<32>
     ) -> SingleValueMapper<PatientInfo<Self::Api>>;
 
+    /// @notice A view function to retrieve a ticket information.
+    /// @dev This function is marked as view which means it's a read-only operation.
+    /// @param id A 32-byte array representing the unique identifier of a ticket.
+    /// @return A SingleValueMapper containing a Ticket object with associated API.
+    #[view(getTicket)]
+    #[storage_mapper("ticker")]
+    fn ticker(
+        &self,
+        id: ManagedByteArray<32>
+    ) -> SingleValueMapper<Ticket<Self::Api>>;
 
     /// @title Permissions Storage Mapper
     /// @notice Maps an entity's address to its permission type.

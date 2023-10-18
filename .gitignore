@@ -8,4 +8,4 @@ packages/contracts/wallet.json
 
 # Dapp
 packages/dapp/node_modules
-packages/dapp/static/out
+packages/dapp/src/out

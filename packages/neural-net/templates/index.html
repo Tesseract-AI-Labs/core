@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Chest Xray Analysis</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="card-title">Chest Xray Analysis</h1>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="file">Select file to upload:</label>
+                                <input type="file" class="form-control-file" name="file" accept=".dcm" id="file">
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="Upload File" name="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="card-title">Analysis Result</h1>
+                    </div>
+                    <div class="card-body">
+                        <p>Prediction ID: {{ hash }} </p>
+                        {% if result_image_url %}
+                            <img src="{{ url_for('static', filename=result_image_url.split('/')[-1]) }}" alt="Result of Analysis" class="img-fluid">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='placeholder.png') }}" alt="Placeholder Image" class="img-fluid">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>
