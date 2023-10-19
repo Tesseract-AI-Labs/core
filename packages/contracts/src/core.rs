@@ -9,7 +9,9 @@ mod constants;
 
 use patient_state::{
     PatientInfo,
-    Ticket
+    Ticket,
+    Model,
+    Metrics
 };
 use constants::*;
 
@@ -149,16 +151,67 @@ pub trait TesseractContract {
         ticket_id
     }
 
+    /// @title Add Model Endpoint
+    /// @notice This function allows for the addition of a new model to the blockchain.
+    /// @dev The function generates a unique identifier for the model, 
+    /// saves the model data to storage, and returns the unique identifier.
+    /// @param model_hash The hash of the model being added.
+    /// @return ManagedByteArray<32> The unique identifier generated for the new model.
     #[endpoint]
     fn add_model(
-        &self
-    ) {}
-
-    #[endpoint]
-    fn update_model(
         &self,
-        id: ManagedByteArray<32>
-    ) {}
+        model_hash: ManagedBuffer
+    ) -> ManagedByteArray<32> {
+        let timestamp = self.blockchain().get_block_timestamp();
+
+        let id = self.hasher();
+
+        let newModel = Model{
+            id: id.clone(),
+            timestamp,
+            model_hash
+        };
+
+        self.model(id.clone()).set(&newModel);
+        id
+    }
+
+
+    /// @title Update Metrics Endpoint
+    /// @notice This function allows for the updating of metrics associated with a model on the blockchain.
+    /// @dev The function generates a new unique identifier for the metrics, 
+    /// creates a new metrics instance with the provided data, 
+    /// saves the metrics data to storage, and returns the unique identifier.
+    /// @param id The unique identifier of the model whose metrics are being updated.
+    /// @param timestamp The timestamp at which the metrics are being updated.
+    /// @param accuracy The accuracy metric of the model.
+    /// @param log_loss The log loss metric of the model.
+    /// @param rmse The Root Mean Square Error (RMSE) metric of the model.
+    /// @return ManagedByteArray<32> The unique identifier generated for the updated metrics.
+    #[endpoint]
+    fn update_metrics(
+        &self,
+        id: ManagedByteArray<32>,
+        timestamp: u64,
+        accuracy: u64,
+        log_loss: u64,
+        rmse: u64
+    ) -> ManagedByteArray<32> {
+        let timestamp = self.blockchain().get_block_timestamp();
+
+        let id = self.hasher();
+
+        let newMetrics = Metrics{
+            id: id.clone(),
+            timestamp,
+            accuracy,
+            log_loss,
+            rmse
+        };
+
+        self.metrics(id.clone()).set(&newMetrics);
+        id
+    }
 
 
     /// @title Authorize Endpoint
@@ -254,6 +307,34 @@ pub trait TesseractContract {
         &self,
         id: ManagedByteArray<32>
     ) -> SingleValueMapper<Ticket<Self::Api>>;
+    
+    
+    /// @title Get Metrics View
+    /// @notice This function provides a view into the metrics associated with a specified identifier.
+    /// @dev The function utilizes a storage mapper to access and return the metrics data.
+    /// It does not modify the state of the blockchain.
+    /// @param id The unique identifier for which to retrieve metrics.
+    /// @return SingleValueMapper<Metrics<Self::Api>> A mapping to the metrics data associated with the provided identifier.
+    #[view(getMetrics)]
+    #[storage_mapper("metrics")]
+    fn metrics(
+        &self,
+        id: ManagedByteArray<32>
+    ) -> SingleValueMapper<Metrics<Self::Api>>;
+
+
+    /// @title Get Model View Function
+    /// @notice This function retrieves the model data associated with a specified model ID.
+    /// @dev The function is tagged as a view function, implying that it does not modify the contract state.
+    /// The `#[storage_mapper("model")]` annotation specifies the storage mapper to be used for accessing the model data.
+    /// @param id The unique identifier of the model to be retrieved.
+    /// @return SingleValueMapper<Model<Self::Api>> A SingleValueMapper containing the model data associated with the specified model ID.
+    #[view(getModel)]
+    #[storage_mapper("model")]
+    fn model(
+        &self,
+        id: ManagedByteArray<32>
+    ) -> SingleValueMapper<Model<Self::Api>>;
 
     /// @title Permissions Storage Mapper
     /// @notice Maps an entity's address to its permission type.

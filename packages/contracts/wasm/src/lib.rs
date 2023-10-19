@@ -5,9 +5,9 @@
 ////////////////////////////////////////////////////
 
 // Init:                                 1
-// Endpoints:                           11
+// Endpoints:                           13
 // Async Callback (empty):               1
-// Total number of exported functions:  13
+// Total number of exported functions:  15
 
 #![no_std]
 #![feature(lang_items)]
@@ -23,12 +23,14 @@ multiversx_sc_wasm_adapter::endpoints! {
         create_ticket
         update_validation
         add_model
-        update_model
+        update_metrics
         authorize
         is_authorized
         is_admin
         getPatientInfo
         getTicket
+        getMetrics
+        getModel
     )
 }
 
