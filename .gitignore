@@ -5,6 +5,7 @@ packages/contracts/output*/
 packages/contractstarget/
 packages/contracts.DS_store
 packages/contracts/wallet.json
+packages/contracts/converted_wallet.json
 
 # Dapp
 packages/dapp/node_modules

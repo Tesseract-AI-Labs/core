@@ -1,4 +1,6 @@
 
+Contract Address: erd1qqqqqqqqqqqqqpgqzq9sc047cnmm9r0c38kekzgr9f7cmx2yp83sjr62c7
+
 **Decentralized Chest X-ray Validation and Anomaly Detection Platform**
 
 **Objective**: Create a platform where medical professionals worldwide can contribute, validate, and utilize machine-learned anomaly detection models for chest X-rays, all maintained on a blockchain for transparency, traceability, and collaborative model improvement.
