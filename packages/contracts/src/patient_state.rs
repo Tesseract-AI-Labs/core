@@ -8,7 +8,6 @@ pub struct PatientInfo<M: ManagedTypeApi> {
     pub dob: ManagedBuffer<M>,
     pub address: ManagedAddress<M>,
     pub sex: ManagedBuffer<M>,
-    pub tickets: ManagedVec<M, Ticket<M>>
 }
 
 impl<M> PatientInfo<M>
@@ -23,6 +22,7 @@ pub struct Ticket<M: ManagedTypeApi> {
     pub id: ManagedByteArray<M, 32>,
     pub timestamp: u64,
     pub analysis_result: ManagedBuffer<M>,
-    pub validation: ManagedBuffer<M>
+    pub validation: ManagedBuffer<M>,
+    pub patient_id: ManagedByteArray<M, 32>
 }
 

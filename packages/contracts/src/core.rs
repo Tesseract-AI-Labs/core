@@ -46,7 +46,7 @@ pub trait TesseractContract {
         dob: ManagedBuffer,
         address: ManagedAddress,
         sex: ManagedBuffer,
-    ) {
+    ) -> ManagedByteArray<32> {
         require!(!name.is_empty(), INVALID_ENTRY);
         require!(!dob.is_empty(), INVALID_ENTRY);
         require!(!sex.is_empty(), INVALID_ENTRY);
@@ -65,11 +65,11 @@ pub trait TesseractContract {
             name,
             dob,
             address,
-            sex,
-            tickets: ManagedVec::new()
+            sex
         };
 
-        self.patient_info(id).set(&newPatient);
+        self.patient_info(id.clone()).set(&newPatient);
+        id
     } 
 
     /// @title Delete Patient Endpoint
@@ -105,20 +105,48 @@ pub trait TesseractContract {
     #[endpoint]
     fn create_ticket(
         &self,
-        id: ManagedByteArray<32>,
-        hash_id: i64,
+        patient_id: ManagedByteArray<32>,
         analysis_result: ManagedBuffer
-    ) {
+    ) -> ManagedByteArray<32> {
         let timestamp = self.blockchain().get_block_timestamp();
+
+        let id = self.hasher();
 
         let newTicket = Ticket{
             id: id.clone(),
             timestamp,
             analysis_result,
-            validation: ManagedBuffer::new()
+            validation: ManagedBuffer::new(),
+            patient_id
         };
 
-        self.ticker(id).set(&newTicket);
+        self.ticket(id.clone()).set(&newTicket);
+        id
+    }
+
+    /// @title Update Validation Endpoint
+    /// @notice This function updates the validation field of a specific ticket.
+    /// @param ticket_id The unique identifier of the ticket to be updated.
+    /// @param new_validation The new validation data to be set for the ticket.
+    /// @return SCResult A Smart Contract Result, returning an error if the ticket does not exist, or void on success.
+    #[endpoint]
+    fn update_validation(
+        &self,
+        ticket_id: ManagedByteArray<32>,
+        new_validation: ManagedBuffer
+    ) -> ManagedByteArray<32> {
+
+        let ticket = self.ticket(ticket_id.clone()).get();
+
+        require!(ticket.id.is_empty() == false, "Patient does not exist");
+
+        // Create a mutable copy of the ticket, update the validation field
+        let mut updated_ticket = ticket;
+        updated_ticket.validation = new_validation;
+
+        // Save the updated ticket back to storage
+        self.ticket(ticket_id.clone()).set(&updated_ticket);
+        ticket_id
     }
 
     #[endpoint]
@@ -221,8 +249,8 @@ pub trait TesseractContract {
     /// @param id A 32-byte array representing the unique identifier of a ticket.
     /// @return A SingleValueMapper containing a Ticket object with associated API.
     #[view(getTicket)]
-    #[storage_mapper("ticker")]
-    fn ticker(
+    #[storage_mapper("ticket")]
+    fn ticket(
         &self,
         id: ManagedByteArray<32>
     ) -> SingleValueMapper<Ticket<Self::Api>>;

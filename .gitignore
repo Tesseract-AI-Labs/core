@@ -9,3 +9,6 @@ packages/contracts/wallet.json
 # Dapp
 packages/dapp/node_modules
 packages/dapp/src/out
+
+# Neural Net
+packages/neural-net/models/detr_model.pth
