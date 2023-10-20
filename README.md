@@ -20,6 +20,8 @@ Tesseract AI is a groundbreaking decentralized platform striving to transform th
 5. Trained AI Model - [https://drive.google.com/file/d/1SjFb1krTTvjZWawzjaxMqEbr-5YN2ihC/view?usp=share_link](https://drive.google.com/file/d/1SjFb1krTTvjZWawzjaxMqEbr-5YN2ihC/view?usp=share_link)
 
 
+## Please note. To test the AI model, I have included test .dicom files in the "test-xray" folder. Thanks.
+
 ****
 
 ## Contributing
